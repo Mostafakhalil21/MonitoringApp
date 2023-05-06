@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Monitoring</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            max-width: 50%;
+            height: 30%;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>System Monitoring</h1>
+    <canvas id="myChart"></canvas>
+    <canvas id="myChart1"></canvas>
+    <script>
+        // Get the canvas elements
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const ctx1 = document.getElementById('myChart1').getContext('2d');
+
+        // Define initial data
+        const initData = {
+          labels: [],
+          datasets: [
+            {
+              label: 'Cpu Usage',
+              data: [],
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              tension: 0.1,
+            },
+          ],
+        };
+        const initData1 = {
+          labels: [],
+          datasets: [
+            {
+              label: 'Memory Usage',
+              data: [],
+              backgroundColor: 'rgba(214, 21, 165, 0.89)',
+              borderColor: 'rgba(213, 28, 97, 0.9)',
+              borderWidth: 1,
+              tension: 0.1,
+            },
+          ],
+        };
+
+        // Create the CPU chart
+        const cpuChart = new Chart(ctx, {
+          type: 'line',
+          data: JSON.parse(JSON.stringify(initData)),
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+        // Create the memory chart
+        const memChart = new Chart(ctx1, {
+          type: 'line',
+          data: JSON.parse(JSON.stringify(initData1)),
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+
+        // Function to update the CPU chart with new data
+        async function updateCpuChart() {
+          // Fetch the latest CPU metric from the Flask app
+          const cpuResponse = await fetch('/api/cpu');
+          const cpuData = await cpuResponse.json();
+
+          // Add the new data point to the chart
+          const currentTime = new Date().toLocaleTimeString();
+          cpuChart.data.labels.push(currentTime);
+          cpuChart.data.datasets[0].data.push(cpuData);
+
+          // Update the chart
+          cpuChart.update();
+
+          // Remove the oldest data point if there are more than 10 points
+          if (cpuChart.data.labels.length > 100) {
+            cpuChart.data.labels.shift();
+            cpuChart.data.datasets[0].data.shift();
+          }
+        }
+
+        // Function to update the memory chart with new data
+        async function updateMemChart() {
+          // Fetch the latest memory metric from the Flask app
+          const memResponse = await fetch('/api/memory');
+          const memData = await memResponse.json();
+
+          // Add the new data point to the chart
+          const currentTime = new Date().toLocaleTimeString();
+          memChart.data.labels.push(currentTime);
+          memChart.data.datasets[0].data.push(memData);
+
+          // Update the chart
+          memChart.update();
+
+          // Remove the oldest data point if there are more than 10 points
+          if (memChart.data.labels.length > 100) {
+            memChart.data.labels.shift();
+            memChart.data.datasets[0].data.shift();
+          }
+        }
+
+        // Update the CPU chart every 2 seconds (2000 milliseconds)
+        setInterval(updateCpuChart, 5000);
+
+        // Update the memory chart every 2 seconds (2000 milliseconds)
+        setInterval(updateMemChart, 5000);
+    </script>
+</body>
+</html>
