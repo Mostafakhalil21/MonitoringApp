@@ -12,17 +12,27 @@
             height: 100vh;
             margin: 0;
         }
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 50%;
+            width: 100%;
+        }
         canvas {
             max-width: 50%;
-            height: 30%;
+            height: 20%;
             margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
     <h1>System Monitoring</h1>
-    <canvas id="myChart"></canvas>
-    <canvas id="myChart1"></canvas>
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+      <canvas id="myChart1"></canvas>
+  </div>
     <script>
         // Get the canvas elements
         const ctx = document.getElementById('myChart').getContext('2d');
@@ -125,10 +135,10 @@
         }
 
         // Update the CPU chart every 2 seconds (2000 milliseconds)
-        setInterval(updateCpuChart, 5000);
+        setInterval(updateCpuChart, 60000);
 
         // Update the memory chart every 2 seconds (2000 milliseconds)
-        setInterval(updateMemChart, 5000);
+        setInterval(updateMemChart, 60000);
     </script>
 </body>
 </html>
