@@ -14,13 +14,13 @@ This repository contains a simple Flask-based web application to monitor real-ti
 1. Clone this repository:
 
    ```
-   git clone https://github.com/yourusername/system-monitoring-dashboard.git
+   git clone https://github.com/Mostafakhalil21/MonitoringApp.git
    ```
 
 2. Navigate to the project directory:
 
    ```
-   cd system-monitoring-dashboard
+   cd MonitoringApp
    ```
 
 3. Create a virtual environment and activate it:
@@ -52,6 +52,4 @@ This repository contains a simple Flask-based web application to monitor real-ti
 - psutil: Cross-platform library for retrieving information on system utilization
 - Chart.js: JavaScript library for creating charts
 
-## License
 
-This project is released under the [MIT License](LICENSE).

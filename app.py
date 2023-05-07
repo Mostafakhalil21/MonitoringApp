@@ -1,11 +1,13 @@
 import psutil
 from flask import Flask, render_template, jsonify
 
+psutil.PROCFS_PATH = '/host_proc'
+
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    cpu_percent = psutil.cpu_percent()
+    cpu_percent = psutil.cpu_percent(interval=1)
     mem_info = psutil.virtual_memory()
     mem_percent = mem_info.percent
     message = None
@@ -15,7 +17,7 @@ def index():
 
 @app.route("/api/cpu")
 def get_cpu_usage():
-    cpu_percent = psutil.cpu_percent()
+    cpu_percent = psutil.cpu_percent(interval=1)
     return jsonify(cpu_percent)
 
 @app.route("/api/memory")
