@@ -1,13 +1,16 @@
+import os
 import psutil
 from flask import Flask, render_template, jsonify
 
-psutil.PROCFS_PATH = '/host_proc'
-
 app = Flask(__name__)
+
+# set the new mount point location
+proc_path = '/app/proc' if os.path.exists('/app/proc') else '/proc'
+psutil.PROCFS_PATH = proc_path
 
 @app.route("/")
 def index():
-    cpu_percent = psutil.cpu_percent(interval=1)
+    cpu_percent = psutil.cpu_percent()
     mem_info = psutil.virtual_memory()
     mem_percent = mem_info.percent
     message = None
@@ -17,7 +20,7 @@ def index():
 
 @app.route("/api/cpu")
 def get_cpu_usage():
-    cpu_percent = psutil.cpu_percent(interval=1)
+    cpu_percent = psutil.cpu_percent(interval=1, percpu=True)
     return jsonify(cpu_percent)
 
 @app.route("/api/memory")

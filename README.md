@@ -52,4 +52,3 @@ This repository contains a simple Flask-based web application to monitor real-ti
 - psutil: Cross-platform library for retrieving information on system utilization
 - Chart.js: JavaScript library for creating charts
 
-
