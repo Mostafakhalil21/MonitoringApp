@@ -4,9 +4,7 @@ from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
-# set the new mount point location
-proc_path = '/app/proc' if os.path.exists('/app/proc') else '/proc'
-psutil.PROCFS_PATH = proc_path
+
 
 @app.route("/")
 def index():
