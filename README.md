@@ -1,6 +1,6 @@
 # System Monitoring Dashboard
 
-This repository contains a simple Flask-based web application to monitor real-time CPU and memory usage. The dashboard displays two line charts, one for CPU usage and another for memory usage, that are updated every 5 seconds. The project uses Python's `psutil` library to gather system information and Chart.js for creating the charts.
+This repository contains a simple Flask-based web application to monitor real-time CPU and memory usage. The dashboard displays two line charts, one for CPU usage and another for memory usage, that are updated every 1 seconds. The project uses Python's `psutil` library to gather system information and Chart.js for creating the charts.
 
 ## Features
 

@@ -20,13 +20,13 @@ def index():
 
 @app.route("/api/cpu")
 def get_cpu_usage():
-    cpu_percent = psutil.cpu_percent(interval=1, percpu=True)
+    cpu_percent = psutil.cpu_percent()
     return jsonify(cpu_percent)
 
 @app.route("/api/memory")
 def get_memory_usage():
     mem_info = psutil.virtual_memory()
-    mem_percent = mem_info.percent
+    mem_percent = mem_info.percentzxs
     return jsonify(mem_percent)
 
 if __name__ == '__main__':
