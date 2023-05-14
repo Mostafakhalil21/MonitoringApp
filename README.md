@@ -75,12 +75,10 @@ To deploy the System Monitoring application to a Docker container and a Kubernet
 kubectl get deployment -n default (check deployments)
 kubectl get service -n default (check service)
 kubectl get pods -n default (to check the pods)
-
 ```
 
 4. Access the deployed application using the assigned service endpoint:
 
 ```
 kubectl port-forward service/<service_name> 5000:5000
-
 ```
