@@ -18,12 +18,10 @@ Make sure you have the following dependencies installed:
 - Flask
 - Chart.js
 - psutil
-- plotly
-- tenacity
 - boto3
 - kubernetes
-- Docker (optional)
-- Kubernetes cluster (optional)
+- Docker 
+- Kubernetes cluster
 
 ## Installation
 
