@@ -24,7 +24,7 @@ def get_cpu_usage():
 @app.route("/api/memory")
 def get_memory_usage():
     mem_info = psutil.virtual_memory()
-    mem_percent = mem_info.percentzxs
+    mem_percent = mem_info.percent
     return jsonify(mem_percent)
 
 if __name__ == '__main__':
