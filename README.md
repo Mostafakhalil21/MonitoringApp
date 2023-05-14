@@ -1,36 +1,40 @@
-# System Monitoring Dashboard
 
-This repository contains a simple Flask-based web application to monitor real-time CPU and memory usage. The dashboard displays two line charts, one for CPU usage and another for memory usage, that are updated every 1 seconds. The project uses Python's `psutil` library to gather system information and Chart.js for creating the charts.
+# System Monitoring
+
+System Monitoring is a web application that provides real-time monitoring of CPU and memory usage on a system. It uses Flask, Chart.js, and psutil to fetch system metrics and visualize them in the form of line charts.
 
 ## Features
 
-- Real-time CPU and memory usage monitoring
-- Dynamic line charts with Chart.js
-- Responsive layout for different screen sizes
-- Alerts when CPU or memory usage exceeds 80%
+- Real-time monitoring of CPU and memory usage.
+- Two line charts displaying CPU and memory usage over time.
+- Automatic updates every second to reflect the latest system metrics.
+- Scalable deployment using Docker and Kubernetes.
+
+## Prerequisites
+
+Make sure you have the following dependencies installed:
+
+- Python 3.9 or later
+- Flask
+- Chart.js
+- psutil
+- plotly
+- tenacity
+- boto3
+- kubernetes
+- Docker (optional)
+- Kubernetes cluster (optional)
 
 ## Installation
 
-1. Clone this repository:
+1. Clone the repository:
 
    ```
    git clone https://github.com/Mostafakhalil21/MonitoringApp.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```
    cd MonitoringApp
    ```
 
-3. Create a virtual environment and activate it:
-
-   ```
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-4. Install the required dependencies:
+2. Install the Python dependencies:
 
    ```
    pip install -r requirements.txt
@@ -38,17 +42,45 @@ This repository contains a simple Flask-based web application to monitor real-ti
 
 ## Usage
 
-1. Start the Flask application:
+1. Start the Flask server:
 
    ```
-   python app.py
+   flask run
    ```
 
-2. Open your web browser and go to `http://127.0.0.1:5000/` to view the dashboard.
+2. Open your web browser and navigate to `http://localhost:5000` to view the system monitoring dashboard.
 
-## Dependencies
+## Deployment
 
-- Flask: Web framework for Python
-- psutil: Cross-platform library for retrieving information on system utilization
-- Chart.js: JavaScript library for creating charts
+To deploy the System Monitoring application to a Docker container and a Kubernetes cluster, follow these steps:
 
+1. Build the Docker image:
+
+   ```
+   docker build -t my-monitor-app .
+   ```
+
+2. Push the Docker image to a container registry (e.g., Amazon ECR):
+
+   ```
+   docker tag my-monitor-app:latest <your-registry-uri>/my-monitor-app:latest
+   docker push <your-registry-uri>/my-monitor-app:latest
+   ```
+
+3. Create a deployment and service in your Kubernetes cluster:
+
+- run k8s.python file.
+- check .
+```
+kubectl get deployment -n default (check deployments)
+kubectl get service -n default (check service)
+kubectl get pods -n default (to check the pods)
+
+```
+
+4. Access the deployed application using the assigned service endpoint:
+
+```
+kubectl port-forward service/<service_name> 5000:5000
+
+```
