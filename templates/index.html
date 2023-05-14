@@ -4,34 +4,34 @@
     <title>System Monitoring</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-        }
-        .chart-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 50%;
-            width: 100%;
-        }
-        canvas {
-            max-width: 50%;
-            height: 20%;
-            margin-bottom: 30px;
-        }
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 100%;
+}
+
+.chart {
+    width: 90%;
+    max-height: 40vh;
+    margin-bottom: 30px;
+}
+
+
+
+
     </style>
 </head>
 <body>
-    <h1>System Monitoring</h1>
-    <div class="chart-container">
-      <canvas id="myChart"></canvas>
-      <canvas id="myChart1"></canvas>
+  <h1 style="text-align: center;">System Monitoring</h1>
+  <div class="chart-container">
+      <div class="chart">
+          <canvas id="myChart"></canvas>
+      </div>
+      <div class="chart">
+          <canvas id="myChart1"></canvas>
+      </div>
   </div>
     <script>
         // Get the canvas elements
